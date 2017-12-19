@@ -1,0 +1,4 @@
+services:
+#    app_bundle_time.example:
+#        class: AppBundle\TimeBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

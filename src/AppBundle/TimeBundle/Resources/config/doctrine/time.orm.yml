@@ -1,0 +1,36 @@
+AppBundle\TimeBundle\Entity\time:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        userId:
+            type: integer
+            column: user_id
+        vname:
+            type: string
+            length: 255
+        name:
+            type: string
+            length: 255
+        datum:
+            type: date
+        kommen:
+            type: time
+        gehen:
+            type: time
+        pause:
+            type: time
+        total:
+            type: time
+        statusId:
+            type: integer
+            column: status_id
+        bemerkung:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

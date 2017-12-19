@@ -1,0 +1,30 @@
+time:
+    path:     /
+    defaults: { _controller: "AppBundleTimeBundle:time:index" }
+
+time_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundleTimeBundle:time:show" }
+
+time_new:
+    path:     /new
+    defaults: { _controller: "AppBundleTimeBundle:time:new" }
+
+time_create:
+    path:     /create
+    defaults: { _controller: "AppBundleTimeBundle:time:create" }
+    requirements: { _method: post }
+
+time_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundleTimeBundle:time:edit" }
+
+time_update:
+    path:     /{id}/update
+    defaults: { _controller: "AppBundleTimeBundle:time:update" }
+    requirements: { _method: post|put }
+
+time_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundleTimeBundle:time:delete" }
+    requirements: { _method: post|delete }

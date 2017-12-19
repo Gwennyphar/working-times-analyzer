@@ -1,0 +1,73 @@
+{% extends '::layout.html.twig' %}
+{% block body -%}
+    <h1>Arbeitszeiten</h1>
+
+    <table class="tabelle">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Vorname</th>
+                <th>Name</th>
+                <th>Wochentag</th>
+                <th>Datum</th>
+                <th>Kommen</th>
+                <th>Gehen</th>
+                <th>Pause</th>
+                <th>Arbeitsstunden</th>
+                <th>Status</th>
+                <th>Bemerkung</th>
+                <th>Aktionen</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities|sort %}
+            <tr>
+                <td>{{ entity.userId }}</td>
+                <td>{{ entity.vname }}</td>
+                <td>{{ entity.name }}</td>
+                <td {% if entity.datum|date('w') == 0 or entity.datum|date('w') == 6 %}
+                style="background-color: {{ backgroundColor is defined ? 
+                backgroundColor: 'yellow' }};"
+                {% elseif entity.statusId == 1 or entity.statusId == 2 %}
+                style="background-color: {{ backgroundColor is defined ? 
+                backgroundColor: 'red' }};"
+                {% else %}
+                style="background-color: {{ backgroundColor is defined ? 
+                backgroundColor: 'lightgreen' }};"
+                {% endif %}>
+					{% if entity.datum|date('w') == 0 %}{{ "Son" }}
+					{% elseif entity.datum|date('w') == 1 %}{{ "Mo" }}
+					{% elseif entity.datum|date('w') == 2 %}{{ "Di" }}
+					{% elseif entity.datum|date('w') == 3 %}{{ "Mi" }}
+					{% elseif entity.datum|date('w') == 4 %}{{ "Do" }}
+					{% elseif entity.datum|date('w') == 5 %}{{ "Fr" }}
+					{% elseif entity.datum|date('w') == 6 %}{{ "Sa" }}
+					{% endif %}
+                </td>
+                <td>{% if entity.datum %}{{ entity.datum|date('d.m.Y') }}{% endif %}</td>
+                <td>{% if entity.kommen %}{{ entity.kommen|date('H:i:s') }}{% endif %}</td>
+                <td>{% if entity.gehen %}{{ entity.gehen|date('H:i:s') }}{% endif %}</td>
+                <td>{% if entity.pause %}{{ entity.pause|date('H:i:s') }}{% endif %}</td>
+                <td>{% if entity.total %}{{ entity.total|date('H:i:s') }}{% endif %}</td>
+                <td> 
+					{% if entity.statusId == 1 %} {{ 'Urlaub' }} 
+					{% elseif entity.statusId == 2 %} {{ 'Krankheit' }} 
+					{% elseif entity.datum|date('w') == 0 or 
+					entity.datum|date('w') == 6 %}{{ 'Wochende' }}
+					{% else %} {{ 'Arbeitstag' }}
+					{% endif %}
+                </td>
+                <td>{{ entity.bemerkung }}</td>
+                <td>
+                <!--<a href="{{ path('time_show', { 'id': entity.id }) }}">Details</a>-->
+                {% if entity.total is empty or entity.datum|date('w') == 0 or 
+					entity.datum|date('w') == 6 %}
+                <a href="{{ path('time_edit', { 'id': entity.id }) }}">Bearbeiten</a>
+                {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('time_new') }}">Neuer Eintrag</a>
+    {% endblock %}

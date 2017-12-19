@@ -1,0 +1,7 @@
+app_bundle_time_time:
+    resource: "@AppBundleTimeBundle/Resources/config/routing/time.yml"
+    prefix:   /time
+
+app_bundle_time_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AppBundleTimeBundle:Default:index }

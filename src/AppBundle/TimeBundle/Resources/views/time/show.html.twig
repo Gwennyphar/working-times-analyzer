@@ -1,0 +1,65 @@
+{% extends '::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Arbeitszeiten</h1>
+
+    <table class="tabelle">
+        <tbody>
+            <tr>
+                <th>User</th>
+                <td>{{ entity.userId }}</td>
+            </tr>
+            <tr>
+                <th>Vorname</th>
+                <td>{{ entity.vname }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Datum</th>
+                <td>{{ entity.datum|date('d.m.Y') }}</td>
+            </tr>
+            <tr>
+                <th>Kommen</th>
+                <td>{% if entity.kommen %}{{ entity.kommen|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Gehen</th>
+                <td>{% if entity.gehen %}{{ entity.gehen|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Pause</th>
+                <td>{% if entity.pause %}{{ entity.pause|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Arbeitsstunden</th>
+                <td>{% if entity.total %}{{ entity.total|date('H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ entity.statusId }}</td>
+            </tr>
+            <tr>
+                <th>Bemerkung</th>
+                <td>{{ entity.bemerkung }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+	<tr>
+    <td>
+        <a href="{{ path('time') }}">
+            Alle anzeigen
+        </a>
+    </td>
+    &nbsp;
+    <td>
+        <a href="{{ path('time_edit', { 'id': entity.id }) }}">
+            Bearbeiten
+        </a>
+    </td>
+    <td>{{ form(delete_form) }}</td>
+    </tr>
+{% endblock %}
