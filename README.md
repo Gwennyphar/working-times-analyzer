@@ -1,4 +1,4 @@
-Symfony Working times Analyzer
+Symfony working times Analyzer
 ==============================
 
 Welcome to the Symfony Standard Edition - a fully-functional Symfony2
